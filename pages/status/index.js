@@ -21,7 +21,7 @@ const Index = () => {
         estilo="success"
         titulo="Status"
         qtd={status && NumbersTwoDigits(status.length)}
-        url="/canais/adicionar"
+        url="/status/adicionar"
         textoBt="Adicionar"
         iconeBt="fa-plus"
         className="no-select"

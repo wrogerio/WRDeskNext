@@ -2,7 +2,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow shadow-md mb-2">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand" href="/ativos">
           <i className="far fa-clipboard-list-check me-1"></i>WR Desk
         </a>
         <button
