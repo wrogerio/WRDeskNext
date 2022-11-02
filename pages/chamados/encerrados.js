@@ -1,15 +1,10 @@
-import { useEffect } from "react";
-import Header from "../components/shared/header";
-import Legenda from "../components/shared/legenda";
+import Header from "../../components/shared/header";
+import Legenda from "../../components/shared/legenda";
 
-const Index = () => {
-  useEffect(() => {
-    localStorage.removeItem("modo");
-  }, []);
-
+const Encerrados = () => {
   return (
     <>
-      <Header estilo="primary" titulo="Ativos" qtd={5} url="/" textoBt="Adicionar" iconeBt="fa-plus" className="no-select" />
+      <Header estilo="danger" titulo="Encerrados" qtd={5} url="/" textoBt="Adicionar" iconeBt="fa-plus" className="no-select" />
       <Legenda />
       <div className="row mb-2 no-select">
         <div className="col px-0">
@@ -20,18 +15,18 @@ const Index = () => {
         <div className="col px-0">
           <table className="table table-sm table-bordered">
             <thead>
-              <tr className="bg-primary text-white">
+              <tr className="bg-danger text-white">
                 <th className="py-2">Assunto</th>
-                <th className="py-2 d-sm-table-cell text-center" style={{ width: 57 + "px" }}>
+                <th className="py-2 d-sm-table-cell text-center" style={{ width: 55 + "px" }}>
                   P/D
                 </th>
-                <th className="py-2 d-none d-lg-table-cell" style={{ width: 87 + "px" }}>
+                <th className="py-2 d-none d-lg-table-cell" style={{ width: 85 + "px" }}>
                   Solicitação
                 </th>
-                <th className="py-2 d-none d-lg-table-cell" style={{ width: 87 + "px" }}>
+                <th className="py-2 d-none d-lg-table-cell" style={{ width: 85 + "px" }}>
                   Prazo
                 </th>
-                <th className="py-2 d-none d-lg-table-cell" style={{ width: 87 + "px" }}>
+                <th className="py-2 d-none d-lg-table-cell" style={{ width: 85 + "px" }}>
                   Entrega
                 </th>
                 <th className="py-2 d-none d-xl-table-cell" style={{ width: 110 + "px" }}>
@@ -55,7 +50,7 @@ const Index = () => {
               <tr className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
                 <td className="align-middle" title="Gerar Recursos comprados">
                   <div className="d-flex justify-content-between align-items-center bgmoiza">
-                    <a className="text-primary" href="/chamados/action/36">
+                    <a className="text-danger" href="/chamados/action/36">
                       Gerar Recursos comprados
                     </a>
                   </div>
@@ -91,4 +86,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Encerrados;

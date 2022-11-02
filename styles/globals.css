@@ -7,3 +7,19 @@ body {
 .blue {
   color: #0d6cf8;
 }
+
+.no-select {
+  user-select: none;
+}
+
+th {
+  font-size: 0.9rem !important;
+}
+
+td {
+  font-size: 0.9rem !important;
+}
+
+a {
+  text-decoration: none !important;
+}
