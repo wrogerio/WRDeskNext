@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link" href="/chamados/encerrados">
+              <a className="nav-link" href="/encerrados">
                 <i className="fas fa-trash me-1"></i>Encerrados
               </a>
             </li>
