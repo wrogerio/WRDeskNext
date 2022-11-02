@@ -55,7 +55,13 @@ const Index = () => {
       <Legenda />
       <div className="row mb-2 no-select">
         <div className="col px-0">
-          <input type="text" className="form-control" onKeyUp={(e) => filtrarTable(e.target.value)} placeholder="Filtrar os dados" name="inputFilter" />
+          <input
+            type="text"
+            className="form-control"
+            onKeyUp={(e) => filtrarTable(e.target.value)}
+            placeholder="Filtrar os dados"
+            name="inputFilter"
+          />
         </div>
       </div>
       <div className="row mb2 no-select">
@@ -99,7 +105,7 @@ const Index = () => {
                   <tr className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
                     <td className="align-middle" title="Gerar Recursos comprados">
                       <div className="d-flex justify-content-between align-items-center bgmoiza">
-                        <a className="text-primary" href="/chamados/action/36">
+                        <a className="text-primary" href={"/ativos/" + chamado.id}>
                           {chamado.assunto}
                         </a>
                       </div>

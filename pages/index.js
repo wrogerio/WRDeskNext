@@ -1,5 +1,10 @@
+import { useEffect } from "react";
+
 const Index = () => {
-  window.location.href = "/ativos";
+  useEffect(() => {
+    window.location.href = "/ativos";
+  }, []);
+
   return <></>;
 };
 

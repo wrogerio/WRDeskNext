@@ -30,3 +30,7 @@ a {
 .cursor {
   cursor: pointer;
 }
+
+.form-group {
+  margin-bottom: 0.7rem !important;
+}
