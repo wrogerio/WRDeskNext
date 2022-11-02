@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import InputMask from "react-input-mask";
 import Header from "../../components/shared/header";
 
 const Adicionar = () => {
@@ -90,12 +91,13 @@ const Adicionar = () => {
           <div className="col-xs-12 col-sm-4 col-lg-2">
             <div className="form-group">
               <label htmlFor="dtsolicitacao">Solicitação</label>
-              <input
+              <InputMask
                 mask="99/99/9999"
+                maskPlaceholder={null}
                 type="text"
                 className="form-control"
                 name="dtsolicitacao"
-                placeholder="Solicitante"
+                placeholder="Solicitacao"
                 value={chamado.dtsolicitacao}
                 onChange={(e) => setChamado({ ...chamado, dtsolicitacao: e.target.value })}
               />
@@ -104,8 +106,9 @@ const Adicionar = () => {
           <div className="col-xs-12 col-sm-4 col-lg-2">
             <div className="form-group">
               <label htmlFor="prazo">Prazo</label>
-              <input
+              <InputMask
                 mask="99/99/9999"
+                maskPlaceholder={null}
                 type="text"
                 className="form-control"
                 name="prazo"
@@ -118,12 +121,13 @@ const Adicionar = () => {
           <div className="col-xs-12 col-sm-4 col-lg-2">
             <div className="form-group">
               <label htmlFor="dtentrega">Entrega</label>
-              <input
+              <InputMask
                 mask="99/99/9999"
+                maskPlaceholder={null}
                 type="text"
                 className="form-control"
                 name="dtentrega"
-                placeholder="Prazo"
+                placeholder="Entrega"
                 value={chamado.dtentrega}
                 onChange={(e) => setChamado({ ...chamado, dtentrega: e.target.value })}
               />
@@ -152,6 +156,7 @@ const Adicionar = () => {
               >
                 <option value="">Selecione</option>
                 {canais != undefined &&
+                  canais.count > 0 &&
                   canais.map((canal) => (
                     <option key={canal.id} value={canal.id}>
                       {canal.nome}
@@ -171,6 +176,7 @@ const Adicionar = () => {
               >
                 <option value="">Selecione</option>
                 {statusList != undefined &&
+                  statusList.count > 0 &&
                   statusList.map((obj) => (
                     <option key={obj.id} value={obj.id}>
                       {obj.nome}
@@ -190,6 +196,7 @@ const Adicionar = () => {
               >
                 <option value="">Selecione</option>
                 {analistas != undefined &&
+                  analistas.count > 0 &&
                   analistas.map((obj) => (
                     <option key={obj.id} value={obj.id}>
                       {obj.nome}
@@ -209,6 +216,7 @@ const Adicionar = () => {
               >
                 <option value="">Selecione</option>
                 {empresas != undefined &&
+                  empresas.count > 0 &&
                   empresas.map((obj) => (
                     <option key={obj.id} value={obj.id}>
                       {obj.razaosocial}
