@@ -9,6 +9,15 @@ const GetAtivos = async () => {
   }
 };
 
+const GetEncerrados = async () => {
+  try {
+    const [rows] = await pool.query("SELECT * FROM vEncerrados");
+    return rows;
+  } catch (error) {
+    return error;
+  }
+};
+
 const GetChamadoPorId = async (id) => {
   try {
     const [rows] = await pool.query("SELECT * FROM vChamados WHERE id = ?", [id]);
@@ -20,5 +29,6 @@ const GetChamadoPorId = async (id) => {
 
 module.exports = {
   GetAtivos,
+  GetEncerrados,
   GetChamadoPorId,
 };
