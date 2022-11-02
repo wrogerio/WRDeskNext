@@ -23,7 +23,6 @@ const Index = () => {
         qtd={canais && NumbersTwoDigits(canais.length)}
         url="/canais/adicionar"
         textoBt="Adicionar"
-        iconeBt="fa-plus"
         className="no-select"
       />
       <div className="row mb2 no-select">

@@ -1,4 +1,12 @@
 const Header = (props) => {
+  const chooseIcon = () => {
+    if (props.textoBt === "Adicionar") {
+      return "fa-plus-circle fa-lg";
+    } else if (props.textoBt === "Voltar") {
+      return "fa-home fa-lg";
+    }
+  };
+
   const modoNew = () => {
     localStorage.removeItem("modo");
     if (props.textoBotao == "Adicionar") localStorage.setItem("modo", "new");
@@ -16,7 +24,7 @@ const Header = (props) => {
               </h5>
             </span>
             <a className={["btn btn-sm btn-outline btn-outline-", props.estilo].join("")} href={props.url} onClick={() => modoNew()}>
-              <i className={["no-select fas", props.iconeBt, "me-1"].join(" ")}></i>
+              <i className={["no-select fas", chooseIcon(), "me-1"].join(" ")}></i>
               <span className="no-select">{props.textoBt}</span>
             </a>
           </div>

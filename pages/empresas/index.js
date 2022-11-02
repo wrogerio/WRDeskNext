@@ -23,7 +23,6 @@ const Index = () => {
         qtd={empresas && NumbersTwoDigits(empresas.length)}
         url="/empresas/adicionar"
         textoBt="Adicionar"
-        iconeBt="fa-plus"
         className="no-select"
       />
       <div className="row mb2 no-select">

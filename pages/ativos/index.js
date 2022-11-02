@@ -50,7 +50,6 @@ const Index = () => {
         qtd={chamados && NumbersTwoDigits(chamados.length)}
         url="/ativos/adicionar"
         textoBt="Adicionar"
-        iconeBt="fa-plus"
         className="no-select"
       />
       <Legenda />
