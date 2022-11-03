@@ -141,7 +141,10 @@ const Index = () => {
                         </a>
                       </div>
                     </td>
-                    <td className="d-sm-table-cell align-middle text-center px-1" title="Prazo / Dias em Aberto">
+                    <td
+                      className={["d-sm-table-cell align-middle text-center px-1 ", changeChamadoCor(chamado.status)]}
+                      title="Prazo / Dias em Aberto"
+                    >
                       <div className="d-flex justify-content-between">
                         <span className="text-danger fw-bold">{NumbersTwoDigits(chamado.prazo_dias)}</span>
                         <span className="text-primary fw-bold">/</span>
