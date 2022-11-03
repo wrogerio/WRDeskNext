@@ -81,6 +81,10 @@ const Adicionar = () => {
     if (data == true) window.location.href = "/ativos";
   };
 
+  const setQtdRows = (e) => {
+    qtdRows = chamado.descricao.split("\n").length;
+  };
+
   useEffect(() => {
     getCanais().then((data) => setCanais(data));
     getStatusList().then((data) => setStatusList(data));
@@ -195,7 +199,7 @@ const Adicionar = () => {
             <div className="form-group">
               <label htmlFor="descricao">Descrição</label>
               <textarea
-                rows={5}
+                rows={chamado && chamado.descricao.split("\n").length * 0.75}
                 className="form-control"
                 name="descricao"
                 value={chamado.descricao}

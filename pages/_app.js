@@ -1,8 +1,8 @@
-import Head from "next/head";
 import { useEffect } from "react";
+import Head from "next/head";
+import Navbar from "../components/shared/navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
-import Navbar from "../components/shared/navbar";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
