@@ -4,7 +4,7 @@ import Legenda from "../../components/shared/legenda";
 import { NumbersTwoDigits } from "../../utils/Funcoes";
 
 const Index = () => {
-  const [chamados, setChamados] = useState();
+  const [chamados, setChamados] = useState([]);
   const [chamadosBkp, setChamadosBkp] = useState();
 
   const filtrarTable = (valor) => {
@@ -28,6 +28,20 @@ const Index = () => {
       setChamados(chamadosFiltrados);
     } else {
       setChamados(chamadosBkp);
+    }
+  };
+
+  const changeStatusChamado = async (id, statusid) => {
+    if (confirm("Deseja realmente alterar o status deste chamado?")) {
+      const res = await fetch("/api/ativos/" + id, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id, statusid: statusid, modo: "change" }),
+      });
+      const data = await res.json();
+      if (data == true) window.location.reload();
     }
   };
 
@@ -100,9 +114,9 @@ const Index = () => {
               </tr>
             </thead>
             <tbody>
-              {chamados &&
+              {Array.isArray(chamados) &&
                 chamados.map((chamado) => (
-                  <tr className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
+                  <tr key={chamado.id} className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
                     <td className="align-middle" title="Gerar Recursos comprados">
                       <div className="d-flex justify-content-between align-items-center bgmoiza">
                         <a className="text-primary" href={"/ativos/" + chamado.id}>
@@ -125,10 +139,10 @@ const Index = () => {
                     <td className="d-none d-xl-table-cell align-middle">{chamado.razaosocial}</td>
                     <td className="d-none d-xl-table-cell align-middle">{chamado.status}</td>
                     <td className="align-middle text-center">
-                      <span className="me-2">
+                      <span className="me-2" onClick={() => changeStatusChamado(chamado.id, 2)}>
                         <i className="fas fa-lg fa-money-bill text-success cursor"></i>
                       </span>
-                      <span>
+                      <span onClick={() => changeStatusChamado(chamado.id, 4)}>
                         <i className="fas fa-lg fa-check-circle text-danger cursor"></i>
                       </span>
                     </td>

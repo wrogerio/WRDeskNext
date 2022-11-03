@@ -31,6 +31,20 @@ const Index = () => {
     }
   };
 
+  const changeStatusChamado = async (id, statusid) => {
+    if (confirm("Deseja realmente alterar o status deste chamado?")) {
+      const res = await fetch("/api/ativos/" + id, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id, statusid: statusid, modo: "change" }),
+      });
+      const data = await res.json();
+      if (data == true) window.location.href = "/ativos";
+    }
+  };
+
   // Load Chamados
   useEffect(() => {
     localStorage.removeItem("modo");
@@ -55,7 +69,13 @@ const Index = () => {
       />
       <div className="row mb-2 no-select">
         <div className="col px-0">
-          <input type="text" className="form-control" onKeyUp={(e) => filtrarTable(e.target.value)} placeholder="Filtrar os dados" name="inputFilter" />
+          <input
+            type="text"
+            className="form-control"
+            onKeyUp={(e) => filtrarTable(e.target.value)}
+            placeholder="Filtrar os dados"
+            name="inputFilter"
+          />
         </div>
       </div>
       <div className="row mb2 no-select">
@@ -81,7 +101,7 @@ const Index = () => {
                   <tr className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
                     <td className="align-middle" title="Gerar Recursos comprados">
                       <div className="d-flex justify-content-between align-items-center bgmoiza">
-                        <a className="text-danger" href="/chamados/action/36">
+                        <a className="text-danger" href={"/ativos/" + chamado.id}>
                           {chamado.assunto}
                         </a>
                       </div>
@@ -89,7 +109,7 @@ const Index = () => {
                     <td className="d-none d-lg-table-cell align-middle">{chamado.analista}</td>
                     <td className="d-none d-xl-table-cell align-middle">{chamado.razaosocial}</td>
                     <td className="align-middle text-center">
-                      <span>
+                      <span onClick={() => changeStatusChamado(chamado.id, 2)}>
                         <i class="fas fa-lg fa-chevron-circle-left text-danger cursor"></i>
                       </span>
                     </td>

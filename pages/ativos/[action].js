@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import InputMask from "react-input-mask";
+import { maskData } from "../../utils/Funcoes";
 import Header from "../../components/shared/header";
 
 const Adicionar = () => {
+  let modo = "edit";
   const [canais, setCanais] = useState();
   const [statusList, setStatusList] = useState();
   const [analistas, setAnalistas] = useState();
@@ -11,15 +12,26 @@ const Adicionar = () => {
     id: 0,
     assunto: "",
     descricao: "",
-    canalid: "",
-    statusid: "",
-    analistaid: "",
-    empresaid: "",
+    canalid: 0,
+    statusid: 0,
+    analistaid: 0,
+    empresaid: 0,
     solicitante: "",
     dtsolicitacao: "",
     prazo: "",
     dtentrega: "",
   });
+
+  if (typeof window !== "undefined") {
+    modo = localStorage.getItem("modo") ?? "edit";
+  }
+
+  const getChamado = async () => {
+    const id = window.location.pathname.split("/")[2];
+    const res = await fetch("/api/ativos/" + id);
+    const data = await res.json();
+    return data[0];
+  };
 
   const getCanais = async () => {
     const response = await fetch("/api/canais");
@@ -45,16 +57,65 @@ const Adicionar = () => {
     return data;
   };
 
+  const putChamado = async () => {
+    const res = await fetch("/api/ativos/" + chamado.id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...chamado, modo: "update" }),
+    });
+    const data = await res.json();
+    if (data == true) window.location.href = "/ativos";
+  };
+
+  const postChamado = async () => {
+    const res = await fetch("/api/ativos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(chamado),
+    });
+    const data = await res.json();
+    if (data == true) window.location.href = "/ativos";
+  };
+
   useEffect(() => {
     getCanais().then((data) => setCanais(data));
     getStatusList().then((data) => setStatusList(data));
     getAnalistas().then((data) => setAnalistas(data));
     getEmpresas().then((data) => setEmpresas(data));
+
+    if (modo === "edit") {
+      getChamado().then((data) => {
+        setChamado({
+          id: data.id,
+          assunto: data.assunto,
+          descricao: data.descricao,
+          canalid: data.canalid,
+          statusid: data.statusid,
+          analistaid: data.analistaid,
+          empresaid: data.empresaid,
+          solicitante: data.solicitante,
+          dtsolicitacao: data.dtsolicitacao,
+          prazo: data.prazo,
+          dtentrega: data.dtentrega,
+        });
+      });
+    }
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    window.location.href = "/ativos";
+
+    if (modo === "new") await postChamado();
+    await putChamado();
+  };
+
+  const handleData = (campo, valor) => {
+    valor = maskData(valor);
+    setChamado({ ...chamado, [campo]: valor });
   };
 
   return (
@@ -91,45 +152,42 @@ const Adicionar = () => {
           <div className="col-xs-12 col-sm-4 col-lg-2">
             <div className="form-group">
               <label htmlFor="dtsolicitacao">Solicitação</label>
-              <InputMask
-                mask="99/99/9999"
-                maskPlaceholder={null}
+              <input
                 type="text"
                 className="form-control"
                 name="dtsolicitacao"
                 placeholder="Solicitacao"
                 value={chamado.dtsolicitacao}
-                onChange={(e) => setChamado({ ...chamado, dtsolicitacao: e.target.value })}
+                maxLength="10"
+                onChange={(e) => handleData("dtsolicitacao", e.target.value)}
               />
             </div>
           </div>
           <div className="col-xs-12 col-sm-4 col-lg-2">
             <div className="form-group">
               <label htmlFor="prazo">Prazo</label>
-              <InputMask
-                mask="99/99/9999"
-                maskPlaceholder={null}
+              <input
                 type="text"
                 className="form-control"
                 name="prazo"
                 placeholder="Prazo"
                 value={chamado.prazo}
-                onChange={(e) => setChamado({ ...chamado, prazo: e.target.value })}
+                maxLength="10"
+                onChange={(e) => handleData("prazo", e.target.value)}
               />
             </div>
           </div>
           <div className="col-xs-12 col-sm-4 col-lg-2">
             <div className="form-group">
               <label htmlFor="dtentrega">Entrega</label>
-              <InputMask
-                mask="99/99/9999"
-                maskPlaceholder={null}
+              <input
                 type="text"
                 className="form-control"
                 name="dtentrega"
                 placeholder="Entrega"
                 value={chamado.dtentrega}
-                onChange={(e) => setChamado({ ...chamado, dtentrega: e.target.value })}
+                maxLength="10"
+                onChange={(e) => handleData("dtentrega", e.target.value)}
               />
             </div>
           </div>
@@ -155,8 +213,7 @@ const Adicionar = () => {
                 onChange={(e) => setChamado({ ...chamado, canalid: e.target.value })}
               >
                 <option value="">Selecione</option>
-                {canais != undefined &&
-                  canais.count > 0 &&
+                {Array.isArray(canais) &&
                   canais.map((canal) => (
                     <option key={canal.id} value={canal.id}>
                       {canal.nome}
@@ -175,13 +232,15 @@ const Adicionar = () => {
                 onChange={(e) => setChamado({ ...chamado, statusid: e.target.value })}
               >
                 <option value="">Selecione</option>
-                {statusList != undefined &&
-                  statusList.count > 0 &&
-                  statusList.map((obj) => (
-                    <option key={obj.id} value={obj.id}>
-                      {obj.nome}
-                    </option>
-                  ))}
+                {
+                  // verificando se o statusList é array
+                  Array.isArray(statusList) &&
+                    statusList.map((obj) => (
+                      <option key={obj.id} value={obj.id}>
+                        {obj.nome}
+                      </option>
+                    ))
+                }
               </select>
             </div>
           </div>
@@ -195,8 +254,7 @@ const Adicionar = () => {
                 onChange={(e) => setChamado({ ...chamado, analistaid: e.target.value })}
               >
                 <option value="">Selecione</option>
-                {analistas != undefined &&
-                  analistas.count > 0 &&
+                {Array.isArray(analistas) &&
                   analistas.map((obj) => (
                     <option key={obj.id} value={obj.id}>
                       {obj.nome}
@@ -215,8 +273,7 @@ const Adicionar = () => {
                 onChange={(e) => setChamado({ ...chamado, empresaid: e.target.value })}
               >
                 <option value="">Selecione</option>
-                {empresas != undefined &&
-                  empresas.count > 0 &&
+                {Array.isArray(empresas) &&
                   empresas.map((obj) => (
                     <option key={obj.id} value={obj.id}>
                       {obj.razaosocial}

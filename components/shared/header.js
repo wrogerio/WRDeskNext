@@ -9,7 +9,7 @@ const Header = (props) => {
 
   const modoNew = () => {
     localStorage.removeItem("modo");
-    if (props.textoBotao == "Adicionar") localStorage.setItem("modo", "new");
+    if (props.textoBt == "Adicionar") localStorage.setItem("modo", "new");
   };
 
   return (
