@@ -142,7 +142,7 @@ const Index = () => {
                       </div>
                     </td>
                     <td
-                      className={["d-sm-table-cell align-middle text-center px-1 ", changeChamadoCor(chamado.status)]}
+                      className={["d-sm-table-cell align-middle text-center px-1 ", changeChamadoCor(chamado.status)].join("")}
                       title="Prazo / Dias em Aberto"
                     >
                       <div className="d-flex justify-content-between">
