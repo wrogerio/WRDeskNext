@@ -57,7 +57,7 @@ const Index = () => {
   }, []);
 
   return (
-    <>
+    <div className="px-2">
       <Header
         estilo="primary"
         titulo="Ativos"
@@ -108,7 +108,7 @@ const Index = () => {
                 <th className="py-2 d-none d-xl-table-cell" style={{ width: 100 + "px" }}>
                   Status
                 </th>
-                <th className="py-2 text-center" style={{ width: 65 + "px" }}>
+                <th className="py-2 text-center" style={{ width: 70 + "px" }}>
                   Ações
                 </th>
               </tr>
@@ -139,7 +139,7 @@ const Index = () => {
                     <td className="d-none d-xl-table-cell align-middle">{chamado.razaosocial}</td>
                     <td className="d-none d-xl-table-cell align-middle">{chamado.status}</td>
                     <td className="align-middle text-center">
-                      <span className="me-2" onClick={() => changeStatusChamado(chamado.id, 2)}>
+                      <span className="me-3" onClick={() => changeStatusChamado(chamado.id, 2)}>
                         <i className="fas fa-lg fa-money-bill text-success cursor"></i>
                       </span>
                       <span onClick={() => changeStatusChamado(chamado.id, 4)}>
@@ -152,7 +152,7 @@ const Index = () => {
           </table>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

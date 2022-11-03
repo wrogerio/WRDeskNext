@@ -119,7 +119,7 @@ const Adicionar = () => {
   };
 
   return (
-    <div>
+    <div className="px-2">
       <Header estilo="primary" titulo="Adicionar chamado" url="/ativos" textoBt="Voltar" className="no-select" />
       <form onSubmit={handleSubmit}>
         <div className="row">

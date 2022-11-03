@@ -57,7 +57,7 @@ const Index = () => {
   }, []);
 
   return (
-    <>
+    <div className="px-2">
       <Header
         estilo="danger"
         titulo="Encerrados"
@@ -119,7 +119,7 @@ const Index = () => {
           </table>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

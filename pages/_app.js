@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
         <link href="https://cdn.staticaly.com/gh/hung1001/font-awesome-pro/4cac1a6/css/all.css" rel="stylesheet" type="text/css"></link>
       </Head>
       <Navbar />
-      <div className="container p-2">
+      <div className="container">
         <Component {...pageProps} />
       </div>
     </>
