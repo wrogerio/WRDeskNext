@@ -34,3 +34,33 @@ a {
 .form-group {
   margin-bottom: 0.7rem !important;
 }
+
+.bgwell {
+  background-image: url("/bgwell.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 20px;
+}
+
+.bgmoiza {
+  background-image: url("/bgmoiza.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 20px;
+}
+
+.bg-novo {
+  background-color: #fff !important;
+}
+
+.bg-andamento {
+  background-color: #cbf7e3 !important;
+}
+
+.bg-finalizado {
+  background-color: #fac9cf !important;
+}
+
+.bg-cancelado {
+  background-color: #d4d4d4 !important;
+}

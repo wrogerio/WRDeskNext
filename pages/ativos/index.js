@@ -45,6 +45,21 @@ const Index = () => {
     }
   };
 
+  const changeChamadoCor = (status) => {
+    let chamadoCor = "";
+    if (status == "Novo") {
+      chamadoCor = "bg-novo";
+    } else if (status == "Andamento") {
+      chamadoCor = "bg-andamento";
+    } else if (status == "Finalizado") {
+      chamadoCor = "bg-finalizado";
+    } else if (status == "Cancelado") {
+      chamadoCor = "bg-cancelado";
+    }
+
+    return chamadoCor;
+  };
+
   // Load Chamados
   useEffect(() => {
     localStorage.removeItem("modo");
@@ -118,7 +133,9 @@ const Index = () => {
                 chamados.map((chamado) => (
                   <tr key={chamado.id} className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
                     <td className="align-middle" title="Gerar Recursos comprados">
-                      <div className="d-flex justify-content-between align-items-center bgmoiza">
+                      <div
+                        className={["d-flex justify-content-between align-items-center ", chamado.analistaid == 1 ? "bgwell" : "bgmoiza"].join("")}
+                      >
                         <a className="text-primary" href={"/ativos/" + chamado.id}>
                           {chamado.assunto}
                         </a>
@@ -137,8 +154,8 @@ const Index = () => {
                     <td className="d-none d-xl-table-cell align-middle">{chamado.canal}</td>
                     <td className="d-none d-lg-table-cell align-middle">{chamado.analista}</td>
                     <td className="d-none d-xl-table-cell align-middle">{chamado.razaosocial}</td>
-                    <td className="d-none d-xl-table-cell align-middle">{chamado.status}</td>
-                    <td className="align-middle text-center">
+                    <td className={["d-none d-xl-table-cell align-middle ", changeChamadoCor(chamado.status)].join("")}>{chamado.status}</td>
+                    <td className={["align-middle text-center ", changeChamadoCor(chamado.status)].join("")}>
                       <span className="me-3" onClick={() => changeStatusChamado(chamado.id, 2)}>
                         <i className="fas fa-lg fa-money-bill text-success cursor"></i>
                       </span>
