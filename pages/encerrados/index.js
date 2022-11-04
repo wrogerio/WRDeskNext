@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Header from "../../components/shared/header";
 import Legenda from "../../components/shared/legenda";
@@ -101,9 +102,9 @@ const Index = () => {
                   <tr className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
                     <td className="align-middle" title="Gerar Recursos comprados">
                       <div className="d-flex justify-content-between align-items-center bgmoiza">
-                        <a className="text-danger" href={"/ativos/" + chamado.id}>
+                        <Link className="text-danger" href={"/ativos/" + chamado.id}>
                           {chamado.assunto}
-                        </a>
+                        </Link>
                       </div>
                     </td>
                     <td className="d-none d-lg-table-cell align-middle">{chamado.analista}</td>

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Header = (props) => {
   const chooseIcon = () => {
     if (props.textoBt === "Adicionar") {
@@ -23,10 +25,10 @@ const Header = (props) => {
                 {props.qtd && <strong className={["text-white px-4 py-1 rounded bg-", props.estilo].join("")}>{props.qtd}</strong>}
               </h5>
             </span>
-            <a className={["btn btn-sm btn-outline btn-outline-", props.estilo].join("")} href={props.url} onClick={() => modoNew()}>
+            <Link className={["btn btn-sm btn-outline btn-outline-", props.estilo].join("")} href={props.url} onClick={() => modoNew()}>
               <i className={["no-select fas", chooseIcon(), "me-1"].join(" ")}></i>
               <span className="no-select">{props.textoBt}</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

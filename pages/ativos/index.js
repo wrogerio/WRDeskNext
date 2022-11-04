@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import Header from "../../components/shared/header";
 import Legenda from "../../components/shared/legenda";
 import { NumbersTwoDigits } from "../../utils/Funcoes";
@@ -136,9 +137,9 @@ const Index = () => {
                       <div
                         className={["d-flex justify-content-between align-items-center ", chamado.analistaid == 1 ? "bgwell" : "bgmoiza"].join("")}
                       >
-                        <a className="text-primary" href={"/ativos/" + chamado.id}>
+                        <Link className="text-primary" href={"/ativos/" + chamado.id}>
                           {chamado.assunto}
-                        </a>
+                        </Link>
                       </div>
                     </td>
                     <td

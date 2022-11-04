@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { maskData } from "../../utils/Funcoes";
 import Header from "../../components/shared/header";
