@@ -11,7 +11,7 @@ export const getStaticProps = async () => {
     props: {
       canais: data,
     },
-    revalidate: 300,
+    revalidate: 60,
   };
 };
 
