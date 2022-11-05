@@ -44,7 +44,7 @@ const Index = (props) => {
             <tbody>
               {canais &&
                 canais.map((canal) => (
-                  <tr className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
+                  <tr key={canal.id} className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
                     <td className="align-middle" title="Gerar Recursos comprados">
                       <div className="d-flex justify-content-between align-items-center bgmoiza">
                         <Link className="text-success" href={"/canais/" + canal.id}>

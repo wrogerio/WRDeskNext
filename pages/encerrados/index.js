@@ -106,7 +106,7 @@ const Index = (props) => {
             <tbody>
               {chamados &&
                 chamados.map((chamado) => (
-                  <tr className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
+                  <tr key={chamado.id} className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
                     <td className="align-middle" title="Gerar Recursos comprados">
                       <div className="d-flex justify-content-between align-items-center bgmoiza">
                         <Link className="text-danger" href={"/ativos/" + chamado.id}>
@@ -118,7 +118,7 @@ const Index = (props) => {
                     <td className="d-none d-xl-table-cell align-middle">{chamado.razaosocial}</td>
                     <td className="align-middle text-center">
                       <span onClick={() => changeStatusChamado(chamado.id, 2)}>
-                        <i class="fas fa-lg fa-chevron-circle-left text-danger cursor"></i>
+                        <i className="fas fa-lg fa-chevron-circle-left text-danger cursor"></i>
                       </span>
                     </td>
                   </tr>
