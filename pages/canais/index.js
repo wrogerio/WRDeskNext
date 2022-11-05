@@ -4,16 +4,23 @@ import Header from "../../components/shared/header";
 import Legenda from "../../components/shared/legenda";
 import { NumbersTwoDigits } from "../../utils/Funcoes";
 
-const Index = () => {
+export const getStaticProps = async () => {
+  const res = await fetch("https://wrdesk.vercel.app/api/canais");
+  const data = await res.json();
+  return {
+    props: {
+      canais: data,
+    },
+    revalidate: 300,
+  };
+};
+
+const Index = (props) => {
   const [canais, setCanais] = useState([]);
 
   // load canais
   useEffect(() => {
-    fetch("/api/canais").then((res) => {
-      res.json().then((data) => {
-        setCanais(data);
-      });
-    });
+    setCanais(props.canais);
   }, []);
 
   return (

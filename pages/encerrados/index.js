@@ -4,7 +4,18 @@ import Header from "../../components/shared/header";
 import Legenda from "../../components/shared/legenda";
 import { NumbersTwoDigits } from "../../utils/Funcoes";
 
-const Index = () => {
+export const getStaticProps = async () => {
+  const res = await fetch("https://wrdesk.vercel.app/api/encerrados");
+  const data = await res.json();
+  return {
+    props: {
+      chmados: data,
+    },
+    revalidate: 300,
+  };
+};
+
+const Index = (props) => {
   const [chamados, setChamados] = useState();
   const [chamadosBkp, setChamadosBkp] = useState();
 
@@ -49,12 +60,8 @@ const Index = () => {
   // Load Chamados
   useEffect(() => {
     localStorage.removeItem("modo");
-    fetch("/api/encerrados").then((res) => {
-      res.json().then((data) => {
-        setChamados(data);
-        setChamadosBkp(data);
-      });
-    });
+    setChamados(props.chmados);
+    setChamadosBkp(props.chmados);
   }, []);
 
   return (

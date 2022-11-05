@@ -4,16 +4,23 @@ import Header from "../../components/shared/header";
 import Legenda from "../../components/shared/legenda";
 import { NumbersTwoDigits } from "../../utils/Funcoes";
 
-const Index = () => {
+export const getStaticProps = async () => {
+  const res = await fetch("https://wrdesk.vercel.app/api/analistas");
+  const data = await res.json();
+  return {
+    props: {
+      analistas: data,
+    },
+    revalidate: 300,
+  };
+};
+
+const Index = (props) => {
   const [analistas, setAnalistas] = useState([]);
 
   // Load Analistas
   useEffect(() => {
-    fetch("/api/analistas").then((res) => {
-      res.json().then((data) => {
-        setAnalistas(data);
-      });
-    });
+    setAnalistas(props.analistas);
   }, []);
 
   return (
