@@ -46,7 +46,7 @@ const Index = (props) => {
                 empresas.map((empresa) => (
                   <tr key={empresa.id} className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
                     <td className="align-middle" title="Gerar Recursos comprados">
-                      <div className="d-flex justify-content-between align-items-center bgmoiza">
+                      <div className="d-flex justify-content-between align-items-center">
                         <Link className="text-success" href={"/empresas/" + empresa.id}>
                           {empresa.razaosocial}
                         </Link>
