@@ -11,7 +11,7 @@ export const getStaticProps = async () => {
     props: {
       chmados: data,
     },
-    revalidate: 60,
+    revalidate: 30,
   };
 };
 
