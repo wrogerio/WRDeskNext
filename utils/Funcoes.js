@@ -1,5 +1,5 @@
 const NumbersTwoDigits = (number) => {
-  return number < 10 ? `0${number}` : number;
+  return number < 10 && number > 0 ? `0${number}` : number;
 };
 
 const maskData = (valor) => {

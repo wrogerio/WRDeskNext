@@ -4,18 +4,7 @@ import Header from "../../components/shared/header";
 import Legenda from "../../components/shared/legenda";
 import { NumbersTwoDigits } from "../../utils/Funcoes";
 
-export const getStaticProps = async () => {
-  const res = await fetch("https://wrdesk.vercel.app/api/ativos");
-  const data = await res.json();
-  return {
-    props: {
-      chmados: data,
-    },
-    revalidate: 30,
-  };
-};
-
-const Index = (props) => {
+const Index = () => {
   const [chamados, setChamados] = useState([]);
   const [chamadosBkp, setChamadosBkp] = useState();
 
@@ -75,30 +64,22 @@ const Index = (props) => {
   // Load Chamados
   useEffect(() => {
     localStorage.removeItem("modo");
-    setChamados(props.chmados);
-    setChamadosBkp(props.chmados);
+
+    fetch("/api/ativos")
+      .then((res) => res.json())
+      .then((data) => {
+        setChamados(data);
+        setChamadosBkp(data);
+      });
   }, []);
 
   return (
     <div className="px-2">
-      <Header
-        estilo="primary"
-        titulo="Ativos"
-        qtd={chamados && NumbersTwoDigits(chamados.length)}
-        url="/ativos/adicionar"
-        textoBt="Adicionar"
-        className="no-select"
-      />
+      <Header estilo="primary" titulo="Ativos" qtd={chamados && NumbersTwoDigits(chamados.length)} url="/ativos/adicionar" textoBt="Adicionar" className="no-select" />
       <Legenda />
       <div className="row mb-2 no-select">
         <div className="col px-0">
-          <input
-            type="text"
-            className="form-control"
-            onKeyUp={(e) => filtrarTable(e.target.value)}
-            placeholder="Filtrar os dados"
-            name="inputFilter"
-          />
+          <input type="text" className="form-control" onKeyUp={(e) => filtrarTable(e.target.value)} placeholder="Filtrar os dados" name="inputFilter" />
         </div>
       </div>
       <div className="row mb2 no-select">
@@ -107,7 +88,7 @@ const Index = (props) => {
             <thead>
               <tr className="bg-primary text-white">
                 <th className="py-2">Assunto</th>
-                <th className="py-2 d-sm-table-cell text-center" style={{ width: 57 + "px" }}>
+                <th className="py-2 d-sm-table-cell text-center" style={{ width: 65 + "px" }}>
                   P/D
                 </th>
                 <th className="py-2 d-none d-lg-table-cell" style={{ width: 87 + "px" }}>
@@ -141,18 +122,13 @@ const Index = (props) => {
                 chamados.map((chamado) => (
                   <tr key={chamado.id} className="filterText" textsearch="Gerar Recursos compradosMoisésReuniãoCetekAndamento">
                     <td className="align-middle" title="Gerar Recursos comprados">
-                      <div
-                        className={["d-flex justify-content-between align-items-center ", chamado.analistaid == 1 ? "bgwell" : "bgmoiza"].join("")}
-                      >
+                      <div className={["d-flex justify-content-between align-items-center ", chamado.analistaid == 1 ? "bgwell" : "bgmoiza"].join("")}>
                         <Link className="text-primary" href={"/ativos/" + chamado.id}>
                           {chamado.assunto}
                         </Link>
                       </div>
                     </td>
-                    <td
-                      className={["d-sm-table-cell align-middle text-center px-1 ", changeChamadoCor(chamado.status)].join("")}
-                      title="Prazo / Dias em Aberto"
-                    >
+                    <td className={["d-sm-table-cell align-middle text-center px-1 ", changeChamadoCor(chamado.status)].join("")} title="Prazo / Dias em Aberto">
                       <div className="d-flex justify-content-between">
                         <span className="text-danger fw-bold">{NumbersTwoDigits(chamado.prazo_dias)}</span>
                         <span className="text-primary fw-bold">/</span>
