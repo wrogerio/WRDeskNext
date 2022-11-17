@@ -65,7 +65,7 @@ const Index = () => {
   useEffect(() => {
     localStorage.removeItem("modo");
 
-    fetch("/api/ativos")
+    fetch("/api/administrativos")
       .then((res) => res.json())
       .then((data) => {
         setChamados(data);
@@ -75,7 +75,7 @@ const Index = () => {
 
   return (
     <div className="px-2">
-      <Header estilo="primary" titulo="Tarefas" qtd={chamados && NumbersTwoDigits(chamados.length)} url="/ativos/adicionar" textoBt="Adicionar" className="no-select" />
+      <Header estilo="warning" titulo="Administrativos" qtd={chamados && NumbersTwoDigits(chamados.length)} url="/ativos/adicionar" textoBt="Adicionar" className="no-select" />
       <Legenda />
       <div className="row mb-2 no-select">
         <div className="col px-0">
@@ -86,7 +86,7 @@ const Index = () => {
         <div className="col px-0">
           <table className="table table-sm table-bordered">
             <thead>
-              <tr className="bg-primary text-white">
+              <tr className="bg-warning text-white">
                 <th className="py-2">Assunto</th>
                 <th className="py-2 d-sm-table-cell text-center" style={{ width: 65 + "px" }}>
                   P/D

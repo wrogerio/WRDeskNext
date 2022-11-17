@@ -2,7 +2,7 @@ import { pool } from "../config/db.js";
 
 const GetAtivos = async () => {
   try {
-    const [rows] = await pool.query("SELECT * FROM vChamados");
+    const [rows] = await pool.query("SELECT * FROM vChamados Where Tipo = 'task'");
     return rows;
   } catch (error) {
     return error;
@@ -12,6 +12,15 @@ const GetAtivos = async () => {
 const GetEncerrados = async () => {
   try {
     const [rows] = await pool.query("SELECT * FROM vEncerrados");
+    return rows;
+  } catch (error) {
+    return error;
+  }
+};
+
+const GetAdministrativos = async () => {
+  try {
+    const [rows] = await pool.query("SELECT * FROM vChamados Where Tipo = 'adm'");
     return rows;
   } catch (error) {
     return error;
@@ -94,6 +103,7 @@ const ChangeStatusChamado = async (id, status) => {
 
 module.exports = {
   GetAtivos,
+  GetAdministrativos,
   GetEncerrados,
   GetChamadoPorId,
   GetAnalistas,
