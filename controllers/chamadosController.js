@@ -66,6 +66,9 @@ const GetCanais = async () => {
 const GetChamadoPorId = async (id) => {
   try {
     const [rows] = await pool.query("SELECT * FROM vChamadosAll WHERE id = ?", [id]);
+
+    // return first
+    if (rows.length > 0) return rows[0];
     return rows;
   } catch (error) {
     return error;
