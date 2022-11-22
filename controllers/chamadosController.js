@@ -20,7 +20,7 @@ const GetEncerrados = async () => {
 
 const GetAdministrativos = async () => {
   try {
-    const [rows] = await pool.query("SELECT * FROM vChamados Where Tipo = 'adm'");
+    const [rows] = await pool.query("SELECT * FROM vChamados Where Tipo = 'adm' order by assunto");
     return rows;
   } catch (error) {
     return error;

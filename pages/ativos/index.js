@@ -50,9 +50,9 @@ const Index = () => {
     let chamadoCor = "";
     if (status == "Novo") {
       chamadoCor = "bg-novo";
-    } else if (status == "Andamento") {
+    } else if (status == "Ação") {
       chamadoCor = "bg-andamento";
-    } else if (status == "Finalizado") {
+    } else if (status == "Feito") {
       chamadoCor = "bg-finalizado";
     } else if (status == "Cancelado") {
       chamadoCor = "bg-cancelado";
