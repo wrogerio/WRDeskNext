@@ -31,7 +31,7 @@ const Adicionar = () => {
     const id = window.location.pathname.split("/")[2];
     const res = await fetch("/api/ativos/" + id);
     const data = await res.json();
-    return data[0];
+    return data;
   };
 
   const getCanais = async () => {
@@ -137,7 +137,7 @@ const Adicionar = () => {
                 name="assunto"
                 placeholder="Assunto"
                 value={chamado.assunto}
-                required
+                required={true}
                 onChange={(e) => setChamado({ ...chamado, assunto: e.target.value })}
               />
             </div>
@@ -151,7 +151,7 @@ const Adicionar = () => {
                 name="solicitante"
                 placeholder="Solicitante"
                 value={chamado.solicitante}
-                required
+                required={true}
                 onChange={(e) => setChamado({ ...chamado, solicitante: e.target.value })}
               />
             </div>
@@ -166,7 +166,7 @@ const Adicionar = () => {
                 placeholder="Solicitacao"
                 value={chamado.dtsolicitacao}
                 maxLength="10"
-                required
+                required={true}
                 onChange={(e) => handleData("dtsolicitacao", e.target.value)}
               />
             </div>
@@ -181,7 +181,7 @@ const Adicionar = () => {
                 placeholder="Prazo"
                 value={chamado.prazo}
                 maxLength="10"
-                required
+                required={true}
                 onChange={(e) => handleData("prazo", e.target.value)}
               />
             </div>
@@ -208,7 +208,7 @@ const Adicionar = () => {
                 className="form-control"
                 name="descricao"
                 value={chamado.descricao}
-                requireds
+                required={true}
                 onChange={(e) => setChamado({ ...chamado, descricao: e.target.value })}
               ></textarea>
             </div>
@@ -217,7 +217,7 @@ const Adicionar = () => {
             <div className="form-group">
               <label htmlFor="canalid">Canal</label>
               <select className="form-control" name="canalid"
-                required
+                required={true}
                 value={chamado.canalid} onChange={(e) => setChamado({ ...chamado, canalid: e.target.value })}>
                 <option value="">Selecione</option>
                 {Array.isArray(canais) &&
@@ -232,7 +232,7 @@ const Adicionar = () => {
           <div className="col-xs-12 col-md-3">
             <div className="form-group">
               <label htmlFor="statusid">Status</label>
-              <select className="form-control" name="statusid" required value={chamado.statusid} onChange={(e) => setChamado({ ...chamado, statusid: e.target.value })}>
+              <select className="form-control" name="statusid" required={true} value={chamado.statusid} onChange={(e) => setChamado({ ...chamado, statusid: e.target.value })}>
                 <option value="">Selecione</option>
                 {
                   // verificando se o statusList é array
@@ -249,7 +249,7 @@ const Adicionar = () => {
           <div className="col-xs-12 col-md-3">
             <div className="form-group">
               <label htmlFor="analistaid">Analista</label>
-              <select className="form-control" name="analistaid" required value={chamado.analistaid} onChange={(e) => setChamado({ ...chamado, analistaid: e.target.value })}>
+              <select className="form-control" name="analistaid" required={true} value={chamado.analistaid} onChange={(e) => setChamado({ ...chamado, analistaid: e.target.value })}>
                 <option value="">Selecione</option>
                 {Array.isArray(analistas) &&
                   analistas.map((obj) => (
@@ -263,7 +263,7 @@ const Adicionar = () => {
           <div className="col-xs-12 col-md-3">
             <div className="form-group">
               <label htmlFor="empresaid">Empresa</label>
-              <select className="form-control" name="empresaid" required value={chamado.empresaid} onChange={(e) => setChamado({ ...chamado, empresaid: e.target.value })}>
+              <select className="form-control" name="empresaid" required={true} value={chamado.empresaid} onChange={(e) => setChamado({ ...chamado, empresaid: e.target.value })}>
                 <option value="">Selecione</option>
                 {Array.isArray(empresas) &&
                   empresas.map((obj) => (

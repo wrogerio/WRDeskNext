@@ -31,7 +31,7 @@ const Adicionar = () => {
     const id = window.location.pathname.split("/")[2];
     const res = await fetch("/api/ativos/" + id);
     const data = await res.json();
-    return data[0];
+    return data;
   };
 
   const getCanais = async () => {
@@ -240,11 +240,11 @@ const Adicionar = () => {
                 {
                   // verificando se o statusList é array
                   Array.isArray(statusList) &&
-                    statusList.map((obj) => (
-                      <option key={obj.id} value={obj.id}>
-                        {obj.nome}
-                      </option>
-                    ))
+                  statusList.map((obj) => (
+                    <option key={obj.id} value={obj.id}>
+                      {obj.nome}
+                    </option>
+                  ))
                 }
               </select>
             </div>
