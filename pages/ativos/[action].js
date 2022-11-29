@@ -7,7 +7,7 @@ const Adicionar = () => {
   let modo = "edit";
 
   const [canais, setCanais] = useState();
-  const [rows, setRows] = useState(10);
+  const [rows, setRows] = useState(6);
   const [statusList, setStatusList] = useState();
   const [analistas, setAnalistas] = useState();
   const [empresas, setEmpresas] = useState();
@@ -105,7 +105,7 @@ const Adicionar = () => {
           prazo: data.prazo,
           dtentrega: data.dtentrega,
         });
-        setRows(data.descricao.split("\n").length * 3);
+        setRows(data.descricao.split("\n").length * 4);
       });
     }
   }, []);
