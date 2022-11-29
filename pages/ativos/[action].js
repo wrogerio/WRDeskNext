@@ -5,7 +5,9 @@ import Header from "../../components/shared/header";
 
 const Adicionar = () => {
   let modo = "edit";
+
   const [canais, setCanais] = useState();
+  const [rows, setRows] = useState(10);
   const [statusList, setStatusList] = useState();
   const [analistas, setAnalistas] = useState();
   const [empresas, setEmpresas] = useState();
@@ -82,10 +84,6 @@ const Adicionar = () => {
     if (data == true) window.location.href = "/ativos";
   };
 
-  const setQtdRows = (e) => {
-    qtdRows = chamado.descricao.split("\n").length;
-  };
-
   useEffect(() => {
     getCanais().then((data) => setCanais(data));
     getStatusList().then((data) => setStatusList(data));
@@ -107,6 +105,7 @@ const Adicionar = () => {
           prazo: data.prazo,
           dtentrega: data.dtentrega,
         });
+        setRows(data.descricao.split("\n").length * 3);
       });
     }
   }, []);
@@ -204,7 +203,7 @@ const Adicionar = () => {
             <div className="form-group">
               <label htmlFor="descricao">Descrição</label>
               <textarea
-                rows={8}
+                rows={rows}
                 className="form-control"
                 name="descricao"
                 value={chamado.descricao}
@@ -282,8 +281,8 @@ const Adicionar = () => {
             </button>
           </div>
         </div>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 };
 
