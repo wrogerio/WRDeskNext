@@ -204,7 +204,7 @@ const Adicionar = () => {
             <div className="form-group">
               <label htmlFor="descricao">Descrição</label>
               <textarea
-                rows={chamado && chamado.descricao.split("\n").length * 0.75}
+                rows={8}
                 className="form-control"
                 name="descricao"
                 value={chamado.descricao}
