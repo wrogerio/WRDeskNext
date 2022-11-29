@@ -6,6 +6,10 @@ import Header from "../../components/shared/header";
 const Adicionar = () => {
   let modo = "edit";
 
+
+
+
+
   const [canais, setCanais] = useState();
   const [rows, setRows] = useState(6);
   const [statusList, setStatusList] = useState();
@@ -20,8 +24,8 @@ const Adicionar = () => {
     analistaid: 0,
     empresaid: 0,
     solicitante: "",
-    dtsolicitacao: "",
-    prazo: "",
+    dtsolicitacao: getDateToday(),
+    prazo: getDateToday(),
     dtentrega: "",
   });
 
@@ -286,4 +290,19 @@ const Adicionar = () => {
   );
 };
 
+
+const getDateToday = () => {
+  // get now in format dd/mm/yyyy
+  let data = new Date();
+  let dia = data.getDate().toString();
+  let diaF = dia.length == 1 ? "0" + dia : dia;
+  let mes = (data.getMonth() + 1).toString(); //+1 pois no getMonth Janeiro começa com zero.
+  let mesF = mes.length == 1 ? "0" + mes : mes;
+  let anoF = data.getFullYear();
+
+  return diaF + "/" + mesF + "/" + anoF;
+}
+
 export default Adicionar;
+
+
